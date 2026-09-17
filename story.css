@@ -1,0 +1,766 @@
+/* ================================
+   NOVA STORY
+================================ */
+
+.story-section {
+    position: relative;
+    padding: 100px 5% 70px;
+    min-height: auto;
+    overflow: hidden;
+}
+
+
+/* ================================
+   STORY HEADER
+================================ */
+
+.story-header {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.story-header h1 {
+    font-size: clamp(40px, 5vw, 65px);
+    letter-spacing: 6px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #c084fc,
+            #f0abfc,
+            #ffffff
+        );
+
+    background-size: 200%;
+
+    -webkit-background-clip: text;
+    color: transparent;
+
+    animation: storyTitleGlow 5s linear infinite;
+}
+
+.story-header p {
+    color: #aaa0b5;
+    line-height: 1.6;
+    margin-top: 10px;
+}
+
+@keyframes storyTitleGlow {
+
+    0% {
+        background-position: 0%;
+    }
+
+    100% {
+        background-position: 200%;
+    }
+
+}
+
+
+/* ================================
+   STORY GRID
+================================ */
+
+.story-book {
+
+    width: 100%;
+    max-width: 1150px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 15px;
+
+}
+
+
+/* ================================
+   STORY CARD
+================================ */
+
+.story-card {
+
+    position: relative;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(25, 10, 55, .9),
+            rgba(7, 3, 25, .9)
+        );
+
+    border:
+        1px solid
+        rgba(168, 85, 247, .4);
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    opacity: 0;
+
+    transform:
+        translateY(35px)
+        scale(.96);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease,
+        border .4s ease,
+        box-shadow .4s ease;
+
+}
+
+
+/* animation appears when card gets class "show" */
+
+.story-card.show {
+
+    opacity: 1;
+
+    transform:
+        translateY(0)
+        scale(1);
+
+}
+
+
+/* hover */
+
+.story-card:hover {
+
+    transform:
+        translateY(-8px)
+        scale(1.02);
+
+    border-color: #c084fc;
+
+    box-shadow:
+        0 0 20px rgba(168, 85, 247, .35),
+        0 0 50px rgba(168, 85, 247, .12);
+
+}
+
+
+/* ================================
+   STORY IMAGE
+================================ */
+
+.story-image {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 245px;
+
+    overflow: hidden;
+
+    background: #080318;
+
+}
+
+
+/* image */
+
+.story-image img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition:
+        transform .8s ease,
+        filter .8s ease;
+
+}
+
+
+/* image zoom */
+
+.story-card:hover
+.story-image img {
+
+    transform: scale(1.07);
+
+    filter:
+        brightness(1.08)
+        saturate(1.15);
+
+}
+
+
+/* ================================
+   IMAGE GLOW
+================================ */
+
+.story-image::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent 50%,
+            rgba(5, 0, 20, .75)
+        );
+
+    pointer-events: none;
+
+}
+
+
+/* ================================
+   CHAPTER NUMBER
+================================ */
+
+.chapter-number {
+
+    position: absolute;
+
+    top: 10px;
+    right: 10px;
+
+    z-index: 3;
+
+    padding:
+        5px 9px;
+
+    border:
+        1px solid
+        rgba(216, 180, 254, .5);
+
+    border-radius: 20px;
+
+    background:
+        rgba(5, 0, 20, .7);
+
+    backdrop-filter: blur(8px);
+
+    color: #e9d5ff;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+
+}
+
+
+/* ================================
+   STORY CONTENT
+================================ */
+
+.story-content {
+
+    padding: 17px;
+
+}
+
+
+.story-content > span {
+
+    display: block;
+
+    color: #c084fc;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 7px;
+
+}
+
+
+.story-content h2 {
+
+    margin: 0 0 10px;
+
+    font-size: 17px;
+
+    letter-spacing: 1.5px;
+
+    color: white;
+
+}
+
+
+.story-content p {
+
+    margin: 0;
+
+    color: #aaa0b5;
+
+    font-size: 11px;
+
+    line-height: 1.6;
+
+}
+
+
+.story-content strong {
+
+    color: #e9d5ff;
+
+    text-shadow:
+        0 0 10px
+        rgba(168, 85, 247, .7);
+
+}
+
+
+/* ================================
+   CARD LIGHT EFFECT
+================================ */
+
+.story-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 100px;
+    height: 100px;
+
+    top: -50px;
+    left: -50px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(192, 132, 252, .18);
+
+    filter: blur(25px);
+
+    animation:
+        storyLight 5s ease-in-out infinite;
+
+    pointer-events: none;
+
+}
+
+@keyframes storyLight {
+
+    0%, 100% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(180px, 100px);
+    }
+
+}
+
+
+/* ================================
+   FINAL STORY
+================================ */
+
+.final-story {
+
+    grid-column: span 2;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+}
+
+
+.final-story .story-image {
+
+    height: 300px;
+
+}
+
+
+.final-story .story-content {
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    padding: 25px;
+
+}
+
+
+.final-story .story-content h2 {
+
+    font-size: 24px;
+
+}
+
+
+.final-story .story-content > strong {
+
+    margin-top: 8px;
+
+    color: #f0abfc;
+
+    font-size: 18px;
+
+    letter-spacing: 3px;
+
+    text-shadow:
+        0 0 15px #a855f7,
+        0 0 30px rgba(168, 85, 247, .7);
+
+}
+
+
+/* ================================
+   ENTER NOVA BUTTON
+================================ */
+
+.final-story button {
+
+    width: fit-content;
+
+    margin-top: 18px;
+
+    padding: 9px 18px;
+
+    border:
+        1px solid
+        #c084fc;
+
+    border-radius: 25px;
+
+    background:
+        rgba(168, 85, 247, .12);
+
+    color: white;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition: .3s;
+
+}
+
+
+.final-story button:hover {
+
+    transform: translateY(-3px);
+
+    background:
+        rgba(168, 85, 247, .4);
+
+    box-shadow:
+        0 0 20px
+        rgba(168, 85, 247, .7);
+
+}
+
+
+/* ================================
+   STORY ENDING
+================================ */
+
+.story-ending {
+
+    text-align: center;
+
+    margin-top: 50px;
+
+    color: #c084fc;
+
+    font-size: 16px;
+
+    font-style: italic;
+
+    line-height: 1.5;
+
+    opacity: 0;
+
+    animation:
+        endingAppear 2s ease forwards;
+
+    animation-delay: 1s;
+
+}
+
+
+.story-ending p {
+
+    margin: 3px;
+
+}
+
+
+@keyframes endingAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* ================================
+   ORBIT
+================================ */
+
+.orbit-line {
+
+    width: 130px;
+
+    height: 35px;
+
+    margin: 15px auto;
+
+    border:
+        1px solid
+        rgba(192, 132, 252, .5);
+
+    border-radius: 50%;
+
+    transform:
+        rotate(-12deg);
+
+    animation:
+        orbitPulse 3s ease-in-out infinite;
+
+}
+
+
+@keyframes orbitPulse {
+
+    0%, 100% {
+        transform:
+            rotate(-12deg)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            rotate(-12deg)
+            scale(1.15);
+    }
+
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 1000px) {
+
+    .story-book {
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+    }
+
+}
+
+
+@media (max-width: 750px) {
+
+    .story-book {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+    .final-story {
+
+        grid-column: span 2;
+
+    }
+
+}
+
+
+@media (max-width: 520px) {
+
+    .story-section {
+
+        padding:
+            80px 15px 50px;
+
+    }
+
+    .story-book {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .final-story {
+
+        grid-column: span 1;
+
+        display: block;
+
+    }
+
+    .story-image,
+    .final-story .story-image {
+
+        height: 260px;
+
+    }
+    
+
+}
+/* =================================
+   STORY SIZE FIX
+================================= */
+
+.story-section {
+    padding: 80px 5% 60px !important;
+    min-height: auto !important;
+    overflow: hidden;
+}
+
+.story-header {
+    text-align: center !important;
+    margin-bottom: 35px !important;
+}
+
+.story-header h1 {
+    font-size: 48px !important;
+    margin: 8px 0 !important;
+}
+
+.story-header p {
+    font-size: 14px !important;
+    color: #aaa0b5 !important;
+}
+
+
+/* STORY CARDS */
+
+.story-book {
+    max-width: 1100px !important;
+    margin: 0 auto !important;
+
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+
+    gap: 14px !important;
+}
+
+
+/* FORCE SMALL IMAGE */
+
+.story-image {
+    width: 100% !important;
+    height: 220px !important;
+    max-height: 220px !important;
+
+    overflow: hidden !important;
+    position: relative !important;
+}
+
+.story-image img {
+    width: 100% !important;
+    height: 220px !important;
+    max-height: 220px !important;
+
+    object-fit: cover !important;
+    display: block !important;
+}
+
+
+/* CARD */
+
+.story-card {
+    min-height: 0 !important;
+    height: auto !important;
+}
+
+
+/* CONTENT */
+
+.story-content {
+    padding: 14px !important;
+}
+
+.story-content h2 {
+    font-size: 16px !important;
+    margin: 6px 0 8px !important;
+}
+
+.story-content p {
+    font-size: 10px !important;
+    line-height: 1.5 !important;
+}
+
+
+/* FINAL CARD */
+
+.final-story {
+    grid-column: span 2 !important;
+}
+
+.final-story .story-image {
+    height: 250px !important;
+    max-height: 250px !important;
+}
+
+.final-story .story-image img {
+    height: 250px !important;
+    max-height: 250px !important;
+}
+
+
+/* TABLET */
+
+@media (max-width: 900px) {
+
+    .story-book {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 550px) {
+
+    .story-book {
+        grid-template-columns: 1fr !important;
+    }
+
+    .final-story {
+        grid-column: span 1 !important;
+    }
+
+    .story-image,
+    .story-image img {
+        height: 240px !important;
+        max-height: 240px !important;
+    }
+
+}
