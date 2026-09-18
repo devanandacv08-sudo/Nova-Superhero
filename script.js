@@ -3,7 +3,6 @@
 ===================================================== */
 
 function goTo(id) {
-
     const section = document.getElementById(id);
 
     if (!section) {
@@ -24,7 +23,6 @@ function goTo(id) {
 ===================================================== */
 
 function enterNova() {
-
     const experience = document.getElementById("experience");
 
     if (!experience) {
@@ -44,7 +42,6 @@ function enterNova() {
 ===================================================== */
 
 let currentNovaMode = "TALK";
-
 let novaConversation = [];
 
 
@@ -56,19 +53,13 @@ function openNovaChat(mode = "TALK") {
 
     currentNovaMode = mode;
 
-    /* Remove old chat if already open */
-
     const oldChat = document.getElementById("novaChat");
 
     if (oldChat) {
         oldChat.remove();
     }
 
-
-    /* Mode greetings */
-
     const greetings = {
-
         THINK:
             "Tell me what you're trying to figure out. We'll think through it together.",
 
@@ -83,19 +74,13 @@ function openNovaChat(mode = "TALK") {
 
         TALK:
             "I'm here. You don't need a perfect question. Just talk to me."
-
     };
-
-
-    /* Create chat */
 
     const chat = document.createElement("div");
 
     chat.id = "novaChat";
 
-
     chat.innerHTML = `
-
         <div class="chat-window">
 
             <div class="chat-header">
@@ -112,7 +97,6 @@ function openNovaChat(mode = "TALK") {
 
                 </div>
 
-
                 <button
                     class="close-chat"
                     onclick="closeNovaChat()"
@@ -122,20 +106,16 @@ function openNovaChat(mode = "TALK") {
 
             </div>
 
-
             <div
                 class="messages"
                 id="novaMessages"
             >
 
                 <div class="nova-message">
-
                     ${greetings[mode]}
-
                 </div>
 
             </div>
-
 
             <div
                 id="novaTyping"
@@ -145,11 +125,8 @@ function openNovaChat(mode = "TALK") {
                     margin:10px 20px;
                 "
             >
-
                 ✦ NOVA is thinking...
-
             </div>
-
 
             <div class="chat-input">
 
@@ -159,7 +136,6 @@ function openNovaChat(mode = "TALK") {
                     placeholder="Message NOVA..."
                     autocomplete="off"
                 >
-
 
                 <button
                     id="novaSendButton"
@@ -171,25 +147,15 @@ function openNovaChat(mode = "TALK") {
             </div>
 
         </div>
-
     `;
-
 
     document.body.appendChild(chat);
 
-
-    /* Focus input */
-
-    const input =
-        document.getElementById("novaInput");
-
+    const input = document.getElementById("novaInput");
 
     if (input) {
 
         input.focus();
-
-
-        /* Enter key */
 
         input.addEventListener(
             "keydown",
@@ -210,7 +176,6 @@ function openNovaChat(mode = "TALK") {
         );
 
     }
-
 }
 
 
@@ -259,9 +224,11 @@ async function sendNovaMessage() {
 
     input.disabled = true;
 
+
     if (sendButton) {
         sendButton.disabled = true;
     }
+
 
     if (typing) {
         typing.style.display = "block";
@@ -284,8 +251,14 @@ async function sendNovaMessage() {
 
     try {
 
+        /*
+           IMPORTANT:
+           Use the deployed server's API.
+           Do NOT use localhost on the public website.
+        */
+
         const response = await fetch(
-            "http://localhost:3000/api/chat",
+            "/api/chat",
             {
 
                 method: "POST",
@@ -373,7 +346,7 @@ async function sendNovaMessage() {
 
         addNovaMessage(
 
-            "⚠️ I can't reach my AI brain right now. Please make sure the NOVA server is running.",
+            "⚠️ I can't reach my AI brain right now. Please try again in a moment.",
 
             "nova"
 
